@@ -1,0 +1,27 @@
+HOW TO DEPLOY SSl in Window server
+
+
+First create CSR + key
+
+Forward csr to client , client will return to you a zip folder.
+
+Exract folder 
+you will get three cer files
+--Intermediate.cer
+--rootCA.cer
+--www.chefiica.com.cer
+
+Now create a new file name as CACert.crt
+Merge intermediate.cer + rootCA.cer without any space
+
+--Use this cmd to convert file format to .pfx(give password at the time of generating pfx)
+openssl pkcs12 -export -in certificate.cer -inkey privateKey.key -out certificate.pfx -certfile CACert.cer
+
+Send pfx to server 
+login to server and open IIS and go to server certificate 
+double click on server certificate and click on import
+browse pfx file and enter password
+
+Now click on complete certificate request fill all details and do next
+ NOW DO BINDING
+
